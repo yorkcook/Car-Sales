@@ -20,9 +20,28 @@ const intialState = {
 export const reducer = (state = intialState, action) => {
   switch (action.type) {
     case BUY_ITEM:
+      console.log("inside of reducer", action);
       return {
         ...state,
-        store: [...state.store, action.payload]
+        //additionalPrice: state.additionalPrice + action.payload
+        //features: [...car.features. action.payload]
+        additionalPrice: state.additionalPrice + action.payload.price,
+        car: {
+          ...state.car,
+          features: [...state.car.features, action.payload.name]
+        }
+      };
+    case REMOVE_FEATURE:
+      console.log("inside of reducer", action);
+      return {
+        ...state,
+        //additionalPrice: state.additionalPrice + action.payload
+        //features: [...car.features. action.payload]
+        additionalPrice: state.additionalPrice - action.payload.price,
+        car: {
+          ...state.car,
+          features: [...state.car.features, action.payload.name]
+        }
       };
     default:
       return state;
