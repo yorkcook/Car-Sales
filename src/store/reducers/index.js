@@ -23,24 +23,24 @@ export const reducer = (state = intialState, action) => {
       console.log("inside of reducer", action);
       return {
         ...state,
-        //additionalPrice: state.additionalPrice + action.payload
-        //features: [...car.features. action.payload]
+
         additionalPrice: state.additionalPrice + action.payload.price,
         car: {
           ...state.car,
-          features: [...state.car.features, action.payload.name]
+          features: [...state.car.features, action.payload]
         }
       };
     case REMOVE_FEATURE:
       console.log("inside of reducer", action);
       return {
         ...state,
-        //additionalPrice: state.additionalPrice + action.payload
-        //features: [...car.features. action.payload]
+
         additionalPrice: state.additionalPrice - action.payload.price,
         car: {
           ...state.car,
-          features: [...state.car.features, action.payload.name]
+          features: state.car.features.filter(
+            feature => feature.id !== action.payload.id
+          )
         }
       };
     default:
